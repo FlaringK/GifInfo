@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script type="text/javascript" src="libgif/libgif.js"></script>
+  <script type="text/javascript" src="libgif/rubbable.js"></script>
+
+  <link rel="stylesheet" href="functional.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Get GIF Info</h1>
+  <div id="gifuploader">
+    <label for="gifurl">Enter GIF url:</label>
+    <input type="text" name="gifurl" id="gifurl" onchange="previewGif(this.value)"><br>
+    <img src="Example.gif" id="gifimg">
+  </div>
+  <button onclick="loadGif()">Generate Info</button>
+
+  <div id="viewwrap">
+    <div id="viewer"></div>
+  </div>
+  <div id="viewerControls">
+    <button id="play" onclick="zoomBy(2)">Zoom in</button>
+    <button id="play" onclick="zoomBy(0.5)">Zoom out</button>
+    <button id="play" onclick="resetPos()">Reset zoom and position</button>
+  </div>
+
+  <div id="frameInfo"></div>
+  <div id="timeline"></div>
+  <div id="gifControls">
+    <button id="play" onclick="gif.play()">Play GIf</button>
+    <button id="pause" onclick="gif.pause()">Pause GIf</button>
+    <button id="pause" onclick="move_relative(-1)">Move 1 frame back</button>
+    <button id="pause" onclick="move_relative(1)">Move 1 frame forward</button>
+  </div>
+  <div id="info">
+    Number of frames: <span id="frameCount"></span><br>
+    Total time: <span id="totalTime"></span><br>
+    Framerate*: <span id="framerate"></span><br>
+    Colour Count: <span id="colorCount"></span>
+  </div>
+  <!-- Scripts -->
+  <script src="gifinfo.js"></script>
+  <script src="moveandpan.js"></script>
+</body>
+</html>

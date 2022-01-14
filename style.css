@@ -1,0 +1,33 @@
+@font-face {
+  font-family: fontstuck;
+  src: url(https://pipe.miroware.io/5f586dbe02740c4a7fb69f99/Personal%20Sites/Fonts/fontstuck.ttf);
+}
+
+:root {
+  --col1: navy;
+  --shad1: -4px 4px var(--col1), -8px 8px var(--col1), -12px 12px var(--col1), -16px 16px var(--col1)
+}
+
+body {
+  text-align: center;
+  background-color: lightsteelblue;
+  image-rendering: pixelated;
+  font-family: 'Courier New', Courier, monospace;
+
+  padding: 40px;
+}
+
+h1 {
+  font-family: fontstuck;
+  text-shadow: var(--shad1);
+}
+
+body > div {
+  position: relative;
+
+  background: white;
+  box-shadow: var(--shad1);
+  
+  max-width: 940px;
+  margin: auto;
+}

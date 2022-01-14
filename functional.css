@@ -1,0 +1,36 @@
+/* Frame Preview */
+.frameDiv {
+  display: inline-block;
+  height: 20px;
+
+  position: relative;
+}
+.frameDiv::before {
+  content: attr(delay);
+
+  position: absolute;
+  display: block;
+  left: 0;
+  background-color: greenyellow;
+
+  opacity: 0;
+}
+.frameDiv:hover::before {
+  bottom: 100%;
+  opacity: 1;
+}
+
+/* Move and Pan */
+#viewer {
+  cursor: move;
+  position: absolute;
+}
+
+#viewwrap {
+  overflow: hidden;
+  background: blue;
+  height: 500px;
+  width: 940px;
+  margin: auto;
+  position: relative;
+}
