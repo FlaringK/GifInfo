@@ -51,7 +51,7 @@ let loadGifInfo = () => {
 
   frames.forEach((e, i) => {
     var frameDiv = document.createElement("div")
-    var width = totalTime / pageWidth * e.delay
+    var width = (pageWidth / totalTime) * e.delay
 
     frameDiv.style.backgroundColor = i % 2 ? timelineColors[1] : timelineColors[2]
     frameDiv.style.width = width + "px"
