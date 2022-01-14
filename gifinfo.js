@@ -95,5 +95,5 @@ let updateTimeline = frameIndex => {
   timelineDivs[frameIndex].style.backgroundColor = "blue"
 
   var delay = frames[frameIndex].delay
-  document.getElementById("frameInfo").innerText = "Current frame: " + frameIndex + " | Delay: " + delay + "ms | Unique Colours: " + frameUnique[frameIndex]
+  document.getElementById("frameInfo").innerText = "Current frame: " + (frameIndex + 1) + " | Delay: " + delay + "ms | Unique Colours: " + frameUnique[frameIndex]
 }
