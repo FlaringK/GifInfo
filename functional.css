@@ -23,14 +23,17 @@
 /* Move and Pan */
 #viewer {
   cursor: move;
-  position: absolute;
 }
 
 #viewwrap {
   overflow: hidden;
-  background: blue;
+  background: #ccf;
   height: 500px;
   width: 940px;
   margin: auto;
   position: relative;
+}
+
+#viewwrap > div {
+  position: absolute
 }

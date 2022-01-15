@@ -4,47 +4,68 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gif - info</title>
+  <title>GIF Analyser</title>
 
   <script type="text/javascript" src="libgif/libgif.js"></script>
   <script type="text/javascript" src="libgif/rubbable.js"></script>
 
   <link rel="stylesheet" href="functional.css">
   <link rel="stylesheet" href="style.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GIF Analyser">
+  <meta property="og:description" content="Pretty self explanitory">
+  <meta name="theme-color" content="#B0C4DE">
+
 </head>
 <body>
-  <h1>Get GIF Info</h1>
-  <p>This looks really shitty at the moment, I'll clean it up soon but for now it's functional</p>
+  <h1>GIF Analyser</h1>
+  <p><b>Analyse all your favourite GIFS</b></p>
+  
   <div id="gifuploader">
+    <br>
     <label for="gifurl">Enter GIF url:</label>
-    <input type="text" name="gifurl" id="gifurl" onchange="previewGif(this.value)"><br>
+    <input type="text" name="gifurl" id="gifurl" onchange="previewGif(this.value)" style="width: 70%"><br><br>
     <img src="Example.gif" id="gifimg">
   </div>
-  <button onclick="loadGif()" style="z-index: 10; position: relative;">Generate Info</button>
+  <button onclick="loadGif()" class="cool" style="position: relative; margin: 16px 0 8px 0">Generate Info</button>
 
   <div id="viewwrap">
     <div id="viewer"></div>
+    <div id="fullwrap" style="top: 4px; left: 12px">
+      <button id="toggle" class=cool onclick="togglefullscreen()">Toggle Fullscreen</button>
+    </div>
+    <div id="infoWrap" style="top: 4px; right: 4px;">
+      <div id="frameInfo" class="unit">
+        <b>Current frame:</b><br>
+        Frame index: <span id="frameIndex"></span><br>
+        Frame Length: <span id="frameLength"></span><br>
+        Unique Colours: <span id="uniqueColors"></span>
+      </div>
+      <div id="info" class="unit">
+        <b>Overall GIF:</b><br>
+        Number of frames: <span id="frameCount"></span><br>
+        Total time: <span id="totalTime"></span><br>
+        Framerate*: <span id="framerate"></span><br>
+        Colour Count: <span id="colorCount"></span>
+      </div>
+    </div>
+    <div id="gifControls" style="bottom: 32px; right: 4px">
+      <button id="play" class=cool onclick="togglePlay(this)">⏸</button>
+      <button id="framea" class=cool onclick="move_relative(-1)">-1 frame</button>
+      <button id="frameb" class=cool onclick="move_relative(1)">+1 frame</button>
+    </div>
+    <div id="viewerControls" style="bottom: 32px; left: 12px">
+      <button id="zin" class=cool onclick="zoomBy(2)">Zoom in</button>
+      <button id="zout" class=cool onclick="zoomBy(0.5)">Zoom out</button>
+      <button id="zreset" class=cool onclick="resetPos()">Reset</button>
+    </div>
+    <div id="timeline" style="bottom: -5px; left: 0; right: 0; background: black"></div>
   </div>
-  <div id="viewerControls">
-    <button id="play" onclick="zoomBy(2)">Zoom in</button>
-    <button id="play" onclick="zoomBy(0.5)">Zoom out</button>
-    <button id="play" onclick="resetPos()">Reset zoom and position</button>
-  </div>
-
-  <div id="frameInfo"></div>
-  <div id="timeline"></div>
-  <div id="gifControls">
-    <button id="play" onclick="gif.play()">Play GIf</button>
-    <button id="pause" onclick="gif.pause()">Pause GIf</button>
-    <button id="pause" onclick="move_relative(-1)">Move 1 frame back</button>
-    <button id="pause" onclick="move_relative(1)">Move 1 frame forward</button>
-  </div>
-  <div id="info">
-    Number of frames: <span id="frameCount"></span><br>
-    Total time: <span id="totalTime"></span><br>
-    Framerate*: <span id="framerate"></span><br>
-    Colour Count: <span id="colorCount"></span>
-  </div>
+  <div style="margin: 24px auto 0 auto; padding: 1em 0;">
+    <b>Shortcuts: Left and right will increment frames, up and down will zoom in and out</b> <br>
+    <br>
+    If there are any problems, don't hesitate to dm me on discord at FlaringK#4275</div>
   <!-- Scripts -->
   <script src="gifinfo.js"></script>
   <script src="moveandpan.js"></script>

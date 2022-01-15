@@ -6,7 +6,7 @@ let previewGif = gifurl => {
 var gif, colorCount
 var frames = []
 var pageWidth = 940 // pixels
-var timelineColors = ["blue", "red", "green"]
+var timelineColors = ["grey", "lightgrey"]
 
 // Git init
 let loadGif = () => {
@@ -53,7 +53,7 @@ let loadGifInfo = () => {
     var frameDiv = document.createElement("div")
     var width = (pageWidth / totalTime) * e.delay
 
-    frameDiv.style.backgroundColor = i % 2 ? timelineColors[1] : timelineColors[2]
+    frameDiv.style.backgroundColor = i % 2 ? timelineColors[1] : timelineColors[0]
     frameDiv.style.width = width + "px"
     frameDiv.setAttribute("delay", e.delay + "ms")
     frameDiv.classList = "frameDiv"
@@ -78,7 +78,18 @@ let updateColorCount = ct => {
 }
 
 // Controls
+let togglePlay = button => {
+  if (gif.get_playing()) {
+    gif.pause()
+    button.innerText = "▶"
+  } else {
+    gif.play()
+    button.innerText = "⏸"
+  }
+}
+
 let move_relative = moveby => {
+  if (gif.get_playing()) togglePlay(document.getElementById("play"))
   var new_frame = (gif.get_current_frame() + moveby) % frames.length
   new_frame = new_frame == -1 ? frames.length - 1 : new_frame
 
@@ -86,14 +97,53 @@ let move_relative = moveby => {
   updateTimeline(new_frame)
 }
 
+let togglefullscreen = () => {
+  var viewwrap = document.getElementById("viewwrap")
+  viewwrap.classList = viewwrap.classList == "fullscreen" ? "" : "fullscreen"
+}
+
 // While Playing
 let updateTimeline = frameIndex => {
   var timelineDivs = document.querySelectorAll("#timeline div") 
   timelineDivs.forEach((e, i) => {
-    e.style.backgroundColor = i % 2 ? timelineColors[1] : timelineColors[2]
+    e.id = ""
   })
-  timelineDivs[frameIndex].style.backgroundColor = "blue"
+  timelineDivs[frameIndex].id = "currentFrame"
 
   var delay = frames[frameIndex].delay
-  document.getElementById("frameInfo").innerText = "Current frame: " + (frameIndex + 1) + " | Delay: " + delay + "ms | Unique Colours: " + frameUnique[frameIndex]
+  var frameInfo = document.querySelectorAll("#frameInfo span")
+
+  frameInfo[0].innerText = frameIndex + 1
+  frameInfo[1].innerText = delay + "ms"
+  frameInfo[2].innerText = frameUnique[frameIndex]
 }
+
+// Keyboard shortcuts
+
+window.addEventListener("keydown", function (event) {
+  if (event.defaultPrevented) {
+    return; // Do nothing if the event was already processed
+  }
+
+  switch (event.key) {
+    case "ArrowDown":
+      zoomBy(0.5)
+      break;
+    case "ArrowUp":
+      zoomBy(2)
+      break;
+    case "ArrowLeft":
+      move_relative(-1)
+      break;
+    case "ArrowRight":
+      move_relative(+1)
+      break;
+    default:
+      return; // Quit when this doesn't handle the key event.
+  }
+
+  // Cancel the default action to avoid it being handled twice
+  event.preventDefault();
+}, true);
+// the last option dispatches the event to the listener first,
+// then dispatches event to window
