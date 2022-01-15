@@ -5,7 +5,7 @@ let previewGif = gifurl => {
 // Gif Constants
 var gif, colorCount
 var frames = []
-var pageWidth = 940 // pixels
+var pageWidth = 935 // pixels
 var timelineColors = ["grey", "lightgrey"]
 
 // Git init
