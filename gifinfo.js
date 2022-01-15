@@ -41,7 +41,7 @@ let loadGifInfo = () => {
     totalTime += e.delay 
     smallestDelay = e.delay < smallestDelay ? e.delay : smallestDelay
   });
-  info[1].innerText = totalTime + "ms"
+  info[1].innerText = totalTime + "0ms"
   info[2].innerText = (1 / (smallestDelay / 100)) + " fps"
 
 
@@ -55,7 +55,7 @@ let loadGifInfo = () => {
 
     frameDiv.style.backgroundColor = i % 2 ? timelineColors[1] : timelineColors[0]
     frameDiv.style.width = width + "px"
-    frameDiv.setAttribute("delay", e.delay + "ms")
+    frameDiv.setAttribute("delay", e.delay + "0ms")
     frameDiv.classList = "frameDiv"
 
     timeline.appendChild(frameDiv)
@@ -114,7 +114,7 @@ let updateTimeline = frameIndex => {
   var frameInfo = document.querySelectorAll("#frameInfo span")
 
   frameInfo[0].innerText = frameIndex + 1
-  frameInfo[1].innerText = delay + "ms"
+  frameInfo[1].innerText = delay + "0ms"
   frameInfo[2].innerText = frameUnique[frameIndex]
 }
 
