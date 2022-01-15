@@ -80,6 +80,7 @@ let updateColorCount = ct => {
   })
 
   frameUnique.push(newUniques.length)
+  return
   document.getElementById("colorCount").innerText = unique.length + " colours"
 }
 
@@ -121,7 +122,7 @@ let updateTimeline = frameIndex => {
 
   frameInfo[0].innerText = frameIndex + 1
   frameInfo[1].innerText = delay * 10 + "ms"
-  frameInfo[2].innerText = frameUnique[frameIndex]
+  //frameInfo[2].innerText = frameUnique[frameIndex]
 }
 
 // Keyboard shortcuts
