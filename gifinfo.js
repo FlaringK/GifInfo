@@ -57,6 +57,12 @@ let loadGifInfo = () => {
     frameDiv.style.width = width + "px"
     frameDiv.setAttribute("delay", e.delay * 10 + "ms")
     frameDiv.classList = "frameDiv"
+    frameDiv.onclick = () => {
+      if (gif.get_playing()) togglePlay(document.getElementById("play"))
+
+      gif.move_to(i)
+      updateTimeline(i)
+    }
 
     timeline.appendChild(frameDiv)
   })

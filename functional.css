@@ -4,6 +4,7 @@
   height: 20px;
 
   position: relative;
+  cursor: pointer;
 }
 .frameDiv::before {
   content: attr(delay);
